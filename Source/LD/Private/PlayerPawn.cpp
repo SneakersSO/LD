@@ -19,9 +19,10 @@ APlayerPawn::APlayerPawn()
 	TurretBodyComponent->SetupAttachment(RootComponent);
 
 	TurretCannonComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TurretCannonComponent"));
-	TurretCannonComponent->SetupAttachment(RootComponent);
+
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
+	CameraComponent->SetupAttachment(TurretBodyComponent);
 
 }
 
@@ -43,9 +44,6 @@ void APlayerPawn::Tick(float DeltaTime)
 void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	/*PlayerInputComponent->BindAxis("LookUp", this, &APlayerPawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookRight", this, &APlayerPawn::AddControllerYawInput);*/
 }
 
 void APlayerPawn::RotateTurretBodyYaw(float Value)
